@@ -2,6 +2,7 @@ package com.gijinkakunweathertime;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,12 +15,14 @@ public class VoteManager {
     private final Map<UUID, Long> lastPraiseTime; // Track last praise time for each player
     public static final long COOLDOWN_TIME = 10 * 60 * 1000; // 10 minutes in milliseconds
     private long lastVoteTime;
+    private String currentVote;
 
     public VoteManager() {
         this.votes = new HashMap<>();
         this.playerVotes = new HashMap<>();
         this.lastPraiseTime = new HashMap<>();
         this.lastVoteTime = 0;
+        this.currentVote = "";
         startVoteExpirationTask();
     }
 
@@ -28,6 +31,10 @@ public class VoteManager {
 
         if (votes.isEmpty()) {
             lastVoteTime = currentTime;
+            currentVote = vote;
+        } else if (!currentVote.equals(vote)) {
+            player.sendMessage(ChatColor.RED + "A different vote is in progress.");
+            return;
         }
 
         playerVotes.put(player, vote);
@@ -48,21 +55,22 @@ public class VoteManager {
             executeVoteAction(vote);
             votes.clear();
             playerVotes.clear();
+            currentVote = "";
         }
     }
 
     private void executeVoteAction(String vote) {
         switch (vote) {
-            case "Praise the light":
+            case "light":
                 Bukkit.getWorlds().get(0).setTime(1000);
                 break;
-            case "Praise the dark":
+            case "dark":
                 Bukkit.getWorlds().get(0).setTime(13000);
                 break;
-            case "Praise the sun":
+            case "sun":
                 Bukkit.getWorlds().get(0).setStorm(false);
                 break;
-            case "Praise the rain":
+            case "rain":
                 Bukkit.getWorlds().get(0).setStorm(true);
                 break;
         }
@@ -76,17 +84,18 @@ public class VoteManager {
         ActionBarUtils.sendVoteMessage(vote, currentVotes, requiredVotes);
     }
 
-    private void resetVotes() {
+    private void resetVotes(String vote) {
         votes.clear();
         playerVotes.clear();
-        Bukkit.getScheduler().runTask(GijinkakunWeatherTime.getInstance(), ActionBarUtils::sendVoteExpiredMessage);
+        currentVote = "";
+        ActionBarUtils.sendVoteExpiredMessage(vote);
     }
 
     private void startVoteExpirationTask() {
         Bukkit.getScheduler().runTaskTimer(GijinkakunWeatherTime.getInstance(), () -> {
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastVoteTime > 60000 && !votes.isEmpty()) {
-                resetVotes();
+                resetVotes(currentVote);
                 lastVoteTime = currentTime; // Reset the last vote time after expiration
             }
         }, 0L, 1200L); // Runs every 60 seconds (1200 ticks)

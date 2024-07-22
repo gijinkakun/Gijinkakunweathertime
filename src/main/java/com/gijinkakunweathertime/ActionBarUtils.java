@@ -15,13 +15,13 @@ public class ActionBarUtils {
     }
 
     public static void sendCooldownMessage(Player player, long minutesLeft) {
-        String message = ChatColor.RED + "You have already praised. On cooldown for " + minutesLeft + " minute(s).";
+        String message = ChatColor.RED + "You have already praised. On Cooldown for " + String.valueOf(minutesLeft) + " minutes.";
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
     }
 
     public static void sendVoteMessage(String vote, int currentVotes, int requiredVotes) {
-        String message = currentVotes + " / " + requiredVotes + " have " + vote.toLowerCase() + ".";
-        sendActionBarToAllPlayers(ChatColor.YELLOW + message);
+        String message = ChatColor.YELLOW + String.valueOf(currentVotes) + " / " + String.valueOf(requiredVotes) + " have praised for " + vote.toLowerCase() + ".";
+        sendActionBarToAllPlayers(message);
     }
 
     public static void sendPraiseMessage(String vote) {
@@ -29,8 +29,8 @@ public class ActionBarUtils {
         sendActionBarToAllPlayers(message);
     }
 
-    public static void sendVoteExpiredMessage() {
-        String message = ChatColor.RED + "Praised Failed. Not enough players praised.";
+    public static void sendVoteExpiredMessage(String vote) {
+        String message = ChatColor.RED + "Time has expired. Not enough votes for " + vote.toLowerCase();
         sendActionBarToAllPlayers(message);
     }
 }

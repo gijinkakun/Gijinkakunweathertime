@@ -1,5 +1,5 @@
 name: GijinkakunWeatherTime
-version: 1.0
+version: 1.0.2
 main: com.gijinkakunweathertime.GijinkakunWeatherTime
 description: GijinkakunWeatherTime plugin allows players to control the time of day and weather conditions on the server through simple chat commands.
 api-version: 1.21.0

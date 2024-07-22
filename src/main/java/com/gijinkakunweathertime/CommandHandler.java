@@ -35,23 +35,7 @@ public class CommandHandler implements CommandExecutor {
                 return true; // Exit early to prevent vote from being added
             }
 
-            switch (action) {
-                case "light":
-                    voteManager.addVote(player, "Praise the light");
-                    break;
-                case "night":
-                    voteManager.addVote(player, "Praise the dark");
-                    break;
-                case "sun":
-                    voteManager.addVote(player, "Praise the sun");
-                    break;
-                case "rain":
-                    voteManager.addVote(player, "Praise the rain");
-                    break;
-                default:
-                    player.sendMessage(ChatColor.RED + "Invalid command. Please use: /praise the light, /praise the dark, /praise the sun, /praise the rain.");
-                    return true;
-            }
+            voteManager.addVote(player, action);
             return true;
         }
         return false;
