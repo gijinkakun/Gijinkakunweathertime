@@ -1,0 +1,11 @@
+messages:
+  cooldown: "You have already praised. On cooldown for {minutes} minutes."
+  vote_progress: "{current}/{required} have praised for {vote}."
+  vote_success: "{vote} has been praised!"
+  vote_expired: "Time has expired. Not enough votes for {vote}."
+  usage: "Please use one of the following commands: /praise the light, /praise the dark, /praise the sun, /praise the rain."
+  vote_in_progress: "A different vote is in progress."
+  already_praised: "The {vote} has already been praised recently."
+language: "en"
+cooldown_time: 10 # Cooldown time in minutes
+vote_duration: 1 # Duration of the vote in minutes

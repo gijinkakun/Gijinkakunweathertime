@@ -8,10 +8,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Provides tab completion for the /praise command.
+ */
 public class PraiseCommandCompleter implements TabCompleter {
 
     private static final List<String> COMMANDS = Arrays.asList("the light", "the dark", "the sun", "the rain");
 
+    /**
+     * Handles tab completion for the /praise command.
+     *
+     * @param sender The command sender.
+     * @param command The command.
+     * @param alias The command alias.
+     * @param args The command arguments.
+     * @return A list of tab completion suggestions.
+     */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {

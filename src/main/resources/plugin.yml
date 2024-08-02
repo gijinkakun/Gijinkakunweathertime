@@ -1,5 +1,5 @@
 name: GijinkakunWeatherTime
-version: 1.0.2
+version: 1.1.0
 main: com.gijinkakunweathertime.GijinkakunWeatherTime
 description: GijinkakunWeatherTime plugin allows players to control the time of day and weather conditions on the server through simple chat commands.
 api-version: 1.21.0
@@ -8,3 +8,28 @@ commands:
   praise:
     description: Praise the light, dark, sun, or rain.
     usage: /praise the <light|dark|sun|rain>
+    permission: gijinkakunweathertime.praise
+permissions:
+  gijinkakunweathertime.praise:
+    description: Allows the player to use all /praise commands
+    default: op
+    children:
+      gijinkakunweathertime.praise.light: true
+      gijinkakunweathertime.praise.dark: true
+      gijinkakunweathertime.praise.sun: true
+      gijinkakunweathertime.praise.rain: true
+  gijinkakunweathertime.praise.light:
+    description: Allows the player to praise the light
+    default: op
+  gijinkakunweathertime.praise.dark:
+    description: Allows the player to praise the dark
+    default: op
+  gijinkakunweathertime.praise.sun:
+    description: Allows the player to praise the sun
+    default: op
+  gijinkakunweathertime.praise.rain:
+    description: Allows the player to praise the rain
+    default: op
+  gijinkakunweathertime.initiatevote:
+    description: Allows the player to initiate a vote
+    default: op
