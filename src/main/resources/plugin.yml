@@ -1,0 +1,24 @@
+name: GijinkakunWeatherTime
+version: 1.0.0
+main: com.gijinkakunweathertime.GijinkakunWeatherTime
+description: GijinkakunWeatherTime plugin allows players to control the time of day and weather conditions on the server through simple chat commands.
+api-version: 1.21.0
+author: Christopher Satterthwaite
+commands:
+  praise:
+    description: Praise the light, dark, sun, or rain.
+    usage: /praise the <light|dark|sun|rain>
+    permission: gijinkakunweathertime.praise
+permissions:
+  gijinkakunweathertime.praise:
+    description: Allows the player to use all /praise commands
+    default: op
+  gijinkakunweathertime.bypasscooldown:
+    description: Allows the player to bypass vote cooldown restrictions
+    default: op
+  gijinkakunweathertime.force:
+    description: Allows the player to use /praise force
+    default: op
+  gijinkakunweathertime.reload:
+    description: Allows the player to use /praise reload
+    default: op

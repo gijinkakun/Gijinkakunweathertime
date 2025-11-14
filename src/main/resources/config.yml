@@ -1,0 +1,31 @@
+messages:
+  cooldown: "&#FF5555You have already praised. cooldown for &#FFFFFF{minutes} minutes&#FF5555."
+  vote_progress: "&#FFFFFF{current}/{required} &#619B8A have praised for &#FFFFFF{vote}&#619B8A."
+  vote_success: "&#FFFFFF{vote} &#619B8A has been praised!"
+  vote_expired: "&#FF5555Time has expired. Not enough votes for &#FFFFFF{vote}&#FF5555."
+  usage: "&#FF5555Please use one of the following commands: /praise the light, /praise the dark, /praise the sun, /praise the rain."
+  vote_in_progress: "&#FF5555 different vote is in progress."
+  already_praised: "&#FF5555The &#FFFFFF{vote} &#FF5555has already been praised recently."
+  already_voted: "#FF5555You have already voted in this round."
+  invalid_vote: "&#FF5555You can only praise the light, dark, sun, or rain."
+  no_permission: "&#FF5555You do not have permission to praise the {vote}."
+  vote_removed: "&#FF5555You have withdrawn your praise for &#FFFFFF{vote}&#FF5555."
+  world_disabled: "&#FF5555The &#FFFFFF{world} &#FF5555does not allow praise votes."
+  no_permission_command: "&#FF5555You do not have permission to run this command."
+  reload_success: "&#619B8AGijinkakunWeatherTime configuration reloaded."
+  reload_failed: "&#FF5555Failed to reload the configuration. Check console for errors."
+  force_usage: "&#FF5555Usage: /praise force <light|dark|sun|rain>."
+  force_applied: "&#619B8AForced praise applied for &#FFFFFF{vote}&#619B8A."
+language: "en"
+cooldown_time: 10 # Cooldown time in minutes
+vote_duration: 1 # Duration of the vote in minutes
+vote_thresholds:
+  percentage: 50 # Percent of eligible players required for success
+  minimum_players: 2 # Minimum votes needed regardless of percentage
+worlds:
+  enabled: [] # List of world names allowed to use praise (empty = all)
+  disabled:
+    - id: "world_nether"
+      name: "Nether"
+    - id: "world_the_end"
+      name: "End"
