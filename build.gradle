@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.gijinkakunweathertime'
+version = '1.0.0'
+description = 'A Minecraft plugin that enables players to control time and weather through chat-based voting. Players can vote to switch between day or night and clear or stormy weather, creating a more interactive and community-driven server experience.'
+
+ext {
+    spigotApiVersion = '1.21-R0.1-SNAPSHOT'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigot-repo'
+        url = uri('https://hub.spigotmc.org/nexus/content/repositories/snapshots/')
+        mavenContent { snapshotsOnly() }
+    }
+    maven {
+        name = 'sonatype-snapshots'
+        url = uri('https://oss.sonatype.org/content/repositories/snapshots/')
+        mavenContent { snapshotsOnly() }
+    }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:${spigotApiVersion}"
+    implementation 'com.google.inject:guice:5.0.1'
+
+    testImplementation "org.spigotmc:spigot-api:${spigotApiVersion}"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+tasks.test {
+    useJUnit()
+    // Silence CDS warning triggered by test-time agents that append to bootstrap.
+    jvmArgs '-Xshare:off'
+}
+
+tasks.processResources {
+    inputs.property 'version', project.version
+    inputs.property 'description', project.description
+    filesMatching('plugin.yml') {
+        expand(
+            version: project.version,
+            description: project.description
+        )
+    }
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+            'Implementation-Title': project.name,
+            'Implementation-Version': project.version
+        )
+    }
+    archiveClassifier = 'plain'
+}
+
+tasks.shadowJar {
+    archiveClassifier = ''
+    relocate 'com.google.inject', 'com.gijinkakunweathertime.shadow.com.google.inject'
+    relocate 'com.google.common', 'com.gijinkakunweathertime.shadow.com.google.common'
+    mergeServiceFiles()
+}
+
+tasks.build {
+    dependsOn tasks.shadowJar
+}

@@ -1,0 +1,24 @@
+name: GijinkakunWeatherTime
+version: ${version}
+main: com.gijinkakunweathertime.GijinkakunWeatherTime
+description: ${description}
+api-version: 1.21
+author: Christopher Satterthwaite
+commands:
+  praise:
+    description: Praise the day, night, clear, or storm.
+    usage: /praise the <day|night|clear|storm>
+    permission: gijinkakunweathertime.praise
+permissions:
+  gijinkakunweathertime.praise:
+    description: Allows the player to use all /praise commands
+    default: op
+  gijinkakunweathertime.bypasscooldown:
+    description: Allows the player to bypass vote cooldown restrictions
+    default: op
+  gijinkakunweathertime.force:
+    description: Allows the player to use /praise force
+    default: op
+  gijinkakunweathertime.reload:
+    description: Allows the player to use /praise reload
+    default: op

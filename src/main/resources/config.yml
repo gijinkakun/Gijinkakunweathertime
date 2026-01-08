@@ -1,0 +1,12 @@
+language: "en" # Language file to load from messages_<language>.yml
+cooldown_time: 10 # Cooldown time in minutes
+vote_duration: 1 # Duration of the vote in minutes
+vote_thresholds:
+  percentage: 50 # Percent of eligible players required for success
+worlds:
+  enabled: [] # List of world names allowed to use praise (empty = all)
+  disabled:
+    - id: "world_nether"
+      name: "Nether"
+    - id: "world_the_end"
+      name: "End"
